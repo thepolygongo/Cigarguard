@@ -1,0 +1,601 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		840A894D1CD31C24007A96EB /* Checkpoint+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 840A89461CD31C24007A96EB /* Checkpoint+CoreDataProperties.m */; };
+		840A894E1CD31C24007A96EB /* Checkpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 840A89481CD31C24007A96EB /* Checkpoint.m */; };
+		840A894F1CD31C24007A96EB /* History+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 840A894A1CD31C24007A96EB /* History+CoreDataProperties.m */; };
+		840A89501CD31C24007A96EB /* History.m in Sources */ = {isa = PBXBuildFile; fileRef = 840A894C1CD31C24007A96EB /* History.m */; };
+		840A89521CD38F5E007A96EB /* HistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840A89511CD38F5E007A96EB /* HistoryView.xib */; };
+		840A89551CD38F72007A96EB /* HistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 840A89541CD38F72007A96EB /* HistoryView.m */; };
+		840A89581CD3EC08007A96EB /* HistoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 840A89571CD3EC07007A96EB /* HistoryVC.m */; };
+		842BB0AD1CD0007C00FB5D64 /* CigarGuard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 842BB0AB1CD0007C00FB5D64 /* CigarGuard.xcdatamodeld */; };
+		848C35CA1CCE30570058EFFD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 848C35C91CCE30570058EFFD /* main.m */; };
+		848C35E11CCE3D3D0058EFFD /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848C35E01CCE3D3D0058EFFD /* CoreBluetooth.framework */; };
+		84E43D811CCE81950025D007 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E43D7F1CCE81950025D007 /* AppDelegate.m */; };
+		84E43D8A1CCE81E00025D007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E43D841CCE81E00025D007 /* Assets.xcassets */; };
+		84E43D8B1CCE81E00025D007 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84E43D861CCE81E00025D007 /* LaunchScreen.storyboard */; };
+		84E43D8C1CCE81E00025D007 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84E43D881CCE81E00025D007 /* Main.storyboard */; };
+		84E43D8F1CCE820C0025D007 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E43D8E1CCE820C0025D007 /* HomeVC.m */; };
+		84E43DC21CCEA1320025D007 /* digital-7-italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84E43DC11CCEA1320025D007 /* digital-7-italic.ttf */; };
+		84E43DC51CCEA5EA0025D007 /* SettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E43DC41CCEA5EA0025D007 /* SettingVC.m */; };
+		87C155401DB38CC8008BD3CB /* DVSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1553F1DB38CC8008BD3CB /* DVSwitch.m */; };
+		AF05CFE469A15DED09BC87B8 /* Pods_CigarGuard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A4D0C3A17EED8A21AD00A1 /* Pods_CigarGuard.framework */; };
+		C3EA36011EA694AC00494ACE /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		CB247FD41D659E52005D1F6C /* NSData+Conversion.m in Sources */ = {isa = PBXBuildFile; fileRef = CB247FD31D659E52005D1F6C /* NSData+Conversion.m */; };
+		CB7765161D62B46A001775A0 /* LEBackgroundThread.m in Sources */ = {isa = PBXBuildFile; fileRef = CB7765091D62B46A001775A0 /* LEBackgroundThread.m */; };
+		CB7765171D62B46A001775A0 /* lecore.m in Sources */ = {isa = PBXBuildFile; fileRef = CB77650B1D62B46A001775A0 /* lecore.m */; };
+		CB7765181D62B46A001775A0 /* LELog.m in Sources */ = {isa = PBXBuildFile; fileRef = CB77650F1D62B46A001775A0 /* LELog.m */; };
+		CB7765191D62B46A001775A0 /* LeNetworkStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = CB7765111D62B46A001775A0 /* LeNetworkStatus.m */; };
+		CB77651A1D62B46A001775A0 /* LogFile.m in Sources */ = {isa = PBXBuildFile; fileRef = CB7765131D62B46A001775A0 /* LogFile.m */; };
+		CB77651B1D62B46A001775A0 /* LogFiles.m in Sources */ = {isa = PBXBuildFile; fileRef = CB7765151D62B46A001775A0 /* LogFiles.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		09A4D0C3A17EED8A21AD00A1 /* Pods_CigarGuard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CigarGuard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		340A9EF81E962DC900D818B8 /* CigarGuard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CigarGuard.entitlements; sourceTree = "<group>"; };
+		62B9ED786FFB0F88D63B01D2 /* Pods-CigarGuard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CigarGuard.debug.xcconfig"; path = "Target Support Files/Pods-CigarGuard/Pods-CigarGuard.debug.xcconfig"; sourceTree = "<group>"; };
+		840A89451CD31C24007A96EB /* Checkpoint+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Checkpoint+CoreDataProperties.h"; sourceTree = "<group>"; };
+		840A89461CD31C24007A96EB /* Checkpoint+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Checkpoint+CoreDataProperties.m"; sourceTree = "<group>"; };
+		840A89471CD31C24007A96EB /* Checkpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Checkpoint.h; sourceTree = "<group>"; };
+		840A89481CD31C24007A96EB /* Checkpoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Checkpoint.m; sourceTree = "<group>"; };
+		840A89491CD31C24007A96EB /* History+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "History+CoreDataProperties.h"; sourceTree = "<group>"; };
+		840A894A1CD31C24007A96EB /* History+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "History+CoreDataProperties.m"; sourceTree = "<group>"; };
+		840A894B1CD31C24007A96EB /* History.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = History.h; sourceTree = "<group>"; };
+		840A894C1CD31C24007A96EB /* History.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = History.m; sourceTree = "<group>"; };
+		840A89511CD38F5E007A96EB /* HistoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryView.xib; sourceTree = "<group>"; };
+		840A89531CD38F72007A96EB /* HistoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryView.h; sourceTree = "<group>"; };
+		840A89541CD38F72007A96EB /* HistoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryView.m; sourceTree = "<group>"; };
+		840A89561CD3EC07007A96EB /* HistoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryVC.h; sourceTree = "<group>"; };
+		840A89571CD3EC07007A96EB /* HistoryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryVC.m; sourceTree = "<group>"; };
+		842BB0AC1CD0007C00FB5D64 /* CigarGuard.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CigarGuard.xcdatamodel; sourceTree = "<group>"; };
+		848C35C51CCE30570058EFFD /* CigarGuard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CigarGuard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		848C35C91CCE30570058EFFD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		848C35D91CCE30570058EFFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		848C35E01CCE3D3D0058EFFD /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		84E43D7E1CCE81950025D007 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		84E43D7F1CCE81950025D007 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		84E43D841CCE81E00025D007 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		84E43D871CCE81E00025D007 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		84E43D891CCE81E00025D007 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		84E43D8D1CCE820C0025D007 /* HomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
+		84E43D8E1CCE820C0025D007 /* HomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
+		84E43DC11CCEA1320025D007 /* digital-7-italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "digital-7-italic.ttf"; sourceTree = "<group>"; };
+		84E43DC31CCEA5EA0025D007 /* SettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingVC.h; sourceTree = "<group>"; };
+		84E43DC41CCEA5EA0025D007 /* SettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingVC.m; sourceTree = "<group>"; };
+		87C1553E1DB38CC8008BD3CB /* DVSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVSwitch.h; sourceTree = "<group>"; };
+		87C1553F1DB38CC8008BD3CB /* DVSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVSwitch.m; sourceTree = "<group>"; };
+		9F468F9C7A045249B12EC561 /* Pods-CigarGuard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CigarGuard.release.xcconfig"; path = "Target Support Files/Pods-CigarGuard/Pods-CigarGuard.release.xcconfig"; sourceTree = "<group>"; };
+		CB247FD21D659E52005D1F6C /* NSData+Conversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Conversion.h"; sourceTree = "<group>"; };
+		CB247FD31D659E52005D1F6C /* NSData+Conversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Conversion.m"; sourceTree = "<group>"; };
+		CB7765081D62B46A001775A0 /* LEBackgroundThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBackgroundThread.h; sourceTree = "<group>"; };
+		CB7765091D62B46A001775A0 /* LEBackgroundThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBackgroundThread.m; sourceTree = "<group>"; };
+		CB77650A1D62B46A001775A0 /* lecore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lecore.h; sourceTree = "<group>"; };
+		CB77650B1D62B46A001775A0 /* lecore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = lecore.m; sourceTree = "<group>"; };
+		CB77650C1D62B46A001775A0 /* lelib-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "lelib-Prefix.pch"; sourceTree = "<group>"; };
+		CB77650D1D62B46A001775A0 /* lelib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lelib.h; sourceTree = "<group>"; };
+		CB77650E1D62B46A001775A0 /* LELog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LELog.h; sourceTree = "<group>"; };
+		CB77650F1D62B46A001775A0 /* LELog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LELog.m; sourceTree = "<group>"; };
+		CB7765101D62B46A001775A0 /* LeNetworkStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeNetworkStatus.h; sourceTree = "<group>"; };
+		CB7765111D62B46A001775A0 /* LeNetworkStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeNetworkStatus.m; sourceTree = "<group>"; };
+		CB7765121D62B46A001775A0 /* LogFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogFile.h; sourceTree = "<group>"; };
+		CB7765131D62B46A001775A0 /* LogFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogFile.m; sourceTree = "<group>"; };
+		CB7765141D62B46A001775A0 /* LogFiles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogFiles.h; sourceTree = "<group>"; };
+		CB7765151D62B46A001775A0 /* LogFiles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogFiles.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		848C35C21CCE30570058EFFD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				848C35E11CCE3D3D0058EFFD /* CoreBluetooth.framework in Frameworks */,
+				AF05CFE469A15DED09BC87B8 /* Pods_CigarGuard.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		10BD53A29801BD7B9547393A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				09A4D0C3A17EED8A21AD00A1 /* Pods_CigarGuard.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		842BB0AA1CD0005200FB5D64 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				840A89451CD31C24007A96EB /* Checkpoint+CoreDataProperties.h */,
+				840A89461CD31C24007A96EB /* Checkpoint+CoreDataProperties.m */,
+				840A89471CD31C24007A96EB /* Checkpoint.h */,
+				840A89481CD31C24007A96EB /* Checkpoint.m */,
+				840A89491CD31C24007A96EB /* History+CoreDataProperties.h */,
+				840A894A1CD31C24007A96EB /* History+CoreDataProperties.m */,
+				840A894B1CD31C24007A96EB /* History.h */,
+				840A894C1CD31C24007A96EB /* History.m */,
+				842BB0AB1CD0007C00FB5D64 /* CigarGuard.xcdatamodeld */,
+				CB247FD21D659E52005D1F6C /* NSData+Conversion.h */,
+				CB247FD31D659E52005D1F6C /* NSData+Conversion.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		842BB0BA1CD0211900FB5D64 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				87C1553E1DB38CC8008BD3CB /* DVSwitch.h */,
+				87C1553F1DB38CC8008BD3CB /* DVSwitch.m */,
+				840A89531CD38F72007A96EB /* HistoryView.h */,
+				840A89541CD38F72007A96EB /* HistoryView.m */,
+				840A89511CD38F5E007A96EB /* HistoryView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		848C35BC1CCE30570058EFFD = {
+			isa = PBXGroup;
+			children = (
+				848C35E01CCE3D3D0058EFFD /* CoreBluetooth.framework */,
+				848C35C71CCE30570058EFFD /* CigarGuard */,
+				848C35C61CCE30570058EFFD /* Products */,
+				F9BAA1BE494FBC1A2A036FED /* Pods */,
+				10BD53A29801BD7B9547393A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		848C35C61CCE30570058EFFD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				848C35C51CCE30570058EFFD /* CigarGuard.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		848C35C71CCE30570058EFFD /* CigarGuard */ = {
+			isa = PBXGroup;
+			children = (
+				340A9EF81E962DC900D818B8 /* CigarGuard.entitlements */,
+				84E43D7D1CCE81950025D007 /* Classes */,
+				84E43D831CCE81E00025D007 /* Resource */,
+				848C35D91CCE30570058EFFD /* Info.plist */,
+				848C35C81CCE30570058EFFD /* Supporting Files */,
+			);
+			path = CigarGuard;
+			sourceTree = "<group>";
+		};
+		848C35C81CCE30570058EFFD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				848C35C91CCE30570058EFFD /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		84E43D7D1CCE81950025D007 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				84E43D7E1CCE81950025D007 /* AppDelegate.h */,
+				84E43D7F1CCE81950025D007 /* AppDelegate.m */,
+				84E43D801CCE81950025D007 /* Controller */,
+				842BB0AA1CD0005200FB5D64 /* Model */,
+				842BB0BA1CD0211900FB5D64 /* View */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		84E43D801CCE81950025D007 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				84E43D8D1CCE820C0025D007 /* HomeVC.h */,
+				84E43D8E1CCE820C0025D007 /* HomeVC.m */,
+				84E43DC31CCEA5EA0025D007 /* SettingVC.h */,
+				84E43DC41CCEA5EA0025D007 /* SettingVC.m */,
+				840A89561CD3EC07007A96EB /* HistoryVC.h */,
+				840A89571CD3EC07007A96EB /* HistoryVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		84E43D831CCE81E00025D007 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				84E43D841CCE81E00025D007 /* Assets.xcassets */,
+				CB7765071D62B46A001775A0 /* lelib */,
+				84E43DC01CCEA1320025D007 /* Font */,
+				84E43D851CCE81E00025D007 /* storyboard */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		84E43D851CCE81E00025D007 /* storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				84E43D861CCE81E00025D007 /* LaunchScreen.storyboard */,
+				84E43D881CCE81E00025D007 /* Main.storyboard */,
+			);
+			path = storyboard;
+			sourceTree = "<group>";
+		};
+		84E43DC01CCEA1320025D007 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				84E43DC11CCEA1320025D007 /* digital-7-italic.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		CB7765071D62B46A001775A0 /* lelib */ = {
+			isa = PBXGroup;
+			children = (
+				CB7765081D62B46A001775A0 /* LEBackgroundThread.h */,
+				CB7765091D62B46A001775A0 /* LEBackgroundThread.m */,
+				CB77650A1D62B46A001775A0 /* lecore.h */,
+				CB77650B1D62B46A001775A0 /* lecore.m */,
+				CB77650C1D62B46A001775A0 /* lelib-Prefix.pch */,
+				CB77650D1D62B46A001775A0 /* lelib.h */,
+				CB77650E1D62B46A001775A0 /* LELog.h */,
+				CB77650F1D62B46A001775A0 /* LELog.m */,
+				CB7765101D62B46A001775A0 /* LeNetworkStatus.h */,
+				CB7765111D62B46A001775A0 /* LeNetworkStatus.m */,
+				CB7765121D62B46A001775A0 /* LogFile.h */,
+				CB7765131D62B46A001775A0 /* LogFile.m */,
+				CB7765141D62B46A001775A0 /* LogFiles.h */,
+				CB7765151D62B46A001775A0 /* LogFiles.m */,
+			);
+			path = lelib;
+			sourceTree = "<group>";
+		};
+		F9BAA1BE494FBC1A2A036FED /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				62B9ED786FFB0F88D63B01D2 /* Pods-CigarGuard.debug.xcconfig */,
+				9F468F9C7A045249B12EC561 /* Pods-CigarGuard.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		848C35C41CCE30570058EFFD /* CigarGuard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 848C35DC1CCE30570058EFFD /* Build configuration list for PBXNativeTarget "CigarGuard" */;
+			buildPhases = (
+				73274B446831E8A357E6FEE4 /* [CP] Check Pods Manifest.lock */,
+				848C35C11CCE30570058EFFD /* Sources */,
+				848C35C21CCE30570058EFFD /* Frameworks */,
+				848C35C31CCE30570058EFFD /* Resources */,
+				F28069AA6A05A298E9C078A5 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CigarGuard;
+			productName = CigarGuard;
+			productReference = 848C35C51CCE30570058EFFD /* CigarGuard.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		848C35BD1CCE30570058EFFD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = GP;
+				TargetAttributes = {
+					848C35C41CCE30570058EFFD = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = YF7LGT5X9M;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.WAC = {
+								enabled = 0;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 848C35C01CCE30570058EFFD /* Build configuration list for PBXProject "CigarGuard" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 848C35BC1CCE30570058EFFD;
+			productRefGroup = 848C35C61CCE30570058EFFD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				848C35C41CCE30570058EFFD /* CigarGuard */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		848C35C31CCE30570058EFFD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84E43D8C1CCE81E00025D007 /* Main.storyboard in Resources */,
+				84E43D8A1CCE81E00025D007 /* Assets.xcassets in Resources */,
+				840A89521CD38F5E007A96EB /* HistoryView.xib in Resources */,
+				C3EA36011EA694AC00494ACE /* BuildFile in Resources */,
+				84E43D8B1CCE81E00025D007 /* LaunchScreen.storyboard in Resources */,
+				84E43DC21CCEA1320025D007 /* digital-7-italic.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		73274B446831E8A357E6FEE4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CigarGuard-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F28069AA6A05A298E9C078A5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CigarGuard/Pods-CigarGuard-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BabyBluetooth/BabyBluetooth.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/MagicalRecord/MagicalRecord.framework",
+				"${BUILT_PRODUCTS_DIR}/PNChart/PNChart.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/UICountingLabel/UICountingLabel.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BabyBluetooth.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MagicalRecord.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PNChart.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICountingLabel.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CigarGuard/Pods-CigarGuard-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		848C35C11CCE30570058EFFD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84E43D8F1CCE820C0025D007 /* HomeVC.m in Sources */,
+				84E43D811CCE81950025D007 /* AppDelegate.m in Sources */,
+				842BB0AD1CD0007C00FB5D64 /* CigarGuard.xcdatamodeld in Sources */,
+				84E43DC51CCEA5EA0025D007 /* SettingVC.m in Sources */,
+				CB7765161D62B46A001775A0 /* LEBackgroundThread.m in Sources */,
+				CB7765181D62B46A001775A0 /* LELog.m in Sources */,
+				CB247FD41D659E52005D1F6C /* NSData+Conversion.m in Sources */,
+				CB77651A1D62B46A001775A0 /* LogFile.m in Sources */,
+				848C35CA1CCE30570058EFFD /* main.m in Sources */,
+				840A89551CD38F72007A96EB /* HistoryView.m in Sources */,
+				CB77651B1D62B46A001775A0 /* LogFiles.m in Sources */,
+				840A894F1CD31C24007A96EB /* History+CoreDataProperties.m in Sources */,
+				840A894D1CD31C24007A96EB /* Checkpoint+CoreDataProperties.m in Sources */,
+				840A89501CD31C24007A96EB /* History.m in Sources */,
+				840A894E1CD31C24007A96EB /* Checkpoint.m in Sources */,
+				87C155401DB38CC8008BD3CB /* DVSwitch.m in Sources */,
+				CB7765171D62B46A001775A0 /* lecore.m in Sources */,
+				840A89581CD3EC08007A96EB /* HistoryVC.m in Sources */,
+				CB7765191D62B46A001775A0 /* LeNetworkStatus.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		84E43D861CCE81E00025D007 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84E43D871CCE81E00025D007 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		84E43D881CCE81E00025D007 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				84E43D891CCE81E00025D007 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		848C35DA1CCE30570058EFFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		848C35DB1CCE30570058EFFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		848C35DD1CCE30570058EFFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62B9ED786FFB0F88D63B01D2 /* Pods-CigarGuard.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = YF7LGT5X9M;
+				INFOPLIST_FILE = CigarGuard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ewesterninc.CigarGuard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+			};
+			name = Debug;
+		};
+		848C35DE1CCE30570058EFFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F468F9C7A045249B12EC561 /* Pods-CigarGuard.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = YF7LGT5X9M;
+				INFOPLIST_FILE = CigarGuard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ewesterninc.CigarGuard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		848C35C01CCE30570058EFFD /* Build configuration list for PBXProject "CigarGuard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				848C35DA1CCE30570058EFFD /* Debug */,
+				848C35DB1CCE30570058EFFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		848C35DC1CCE30570058EFFD /* Build configuration list for PBXNativeTarget "CigarGuard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				848C35DD1CCE30570058EFFD /* Debug */,
+				848C35DE1CCE30570058EFFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		842BB0AB1CD0007C00FB5D64 /* CigarGuard.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				842BB0AC1CD0007C00FB5D64 /* CigarGuard.xcdatamodel */,
+			);
+			currentVersion = 842BB0AC1CD0007C00FB5D64 /* CigarGuard.xcdatamodel */;
+			path = CigarGuard.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 848C35BD1CCE30570058EFFD /* Project object */;
+}

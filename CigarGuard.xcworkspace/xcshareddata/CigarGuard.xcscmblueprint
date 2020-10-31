@@ -1,0 +1,25 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "6664a1a3-b837-494e-9f0c-04368c14b365++1029",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "6664a1a3-b837-494e-9f0c-04368c14b365++1029" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "6664a1a3-b837-494e-9f0c-04368c14b365++1029" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "5BF0DE81-40D4-405C-8D30-DFA532AAC70C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "6664a1a3-b837-494e-9f0c-04368c14b365++1029" : "CigarGuard\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "CigarGuard",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "code\/iOS\/CigarGuard\/CigarGuard.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn:\/\/192.168.0.22\/svn\/team2\/outsourcing",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6664a1a3-b837-494e-9f0c-04368c14b365++1029"
+    }
+  ]
+}
