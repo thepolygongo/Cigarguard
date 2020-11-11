@@ -26,7 +26,7 @@
 		84E43DC51CCEA5EA0025D007 /* SettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E43DC41CCEA5EA0025D007 /* SettingVC.m */; };
 		87C155401DB38CC8008BD3CB /* DVSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 87C1553F1DB38CC8008BD3CB /* DVSwitch.m */; };
 		AF05CFE469A15DED09BC87B8 /* Pods_CigarGuard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A4D0C3A17EED8A21AD00A1 /* Pods_CigarGuard.framework */; };
-		C3EA36011EA694AC00494ACE /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		C3EA36011EA694AC00494ACE /* (null) in Resources */ = {isa = PBXBuildFile; };
 		CB247FD41D659E52005D1F6C /* NSData+Conversion.m in Sources */ = {isa = PBXBuildFile; fileRef = CB247FD31D659E52005D1F6C /* NSData+Conversion.m */; };
 		CB7765161D62B46A001775A0 /* LEBackgroundThread.m in Sources */ = {isa = PBXBuildFile; fileRef = CB7765091D62B46A001775A0 /* LEBackgroundThread.m */; };
 		CB7765171D62B46A001775A0 /* lecore.m in Sources */ = {isa = PBXBuildFile; fileRef = CB77650B1D62B46A001775A0 /* lecore.m */; };
@@ -259,7 +259,6 @@
 				62B9ED786FFB0F88D63B01D2 /* Pods-CigarGuard.debug.xcconfig */,
 				9F468F9C7A045249B12EC561 /* Pods-CigarGuard.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -314,6 +313,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -335,7 +335,7 @@
 				84E43D8C1CCE81E00025D007 /* Main.storyboard in Resources */,
 				84E43D8A1CCE81E00025D007 /* Assets.xcassets in Resources */,
 				840A89521CD38F5E007A96EB /* HistoryView.xib in Resources */,
-				C3EA36011EA694AC00494ACE /* BuildFile in Resources */,
+				C3EA36011EA694AC00494ACE /* (null) in Resources */,
 				84E43D8B1CCE81E00025D007 /* LaunchScreen.storyboard in Resources */,
 				84E43DC21CCEA1320025D007 /* digital-7-italic.ttf in Resources */,
 			);
@@ -530,12 +530,15 @@
 			baseConfigurationReference = 62B9ED786FFB0F88D63B01D2 /* Pods-CigarGuard.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = YF7LGT5X9M;
 				INFOPLIST_FILE = CigarGuard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ewesterninc.CigarGuard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -548,12 +551,15 @@
 			baseConfigurationReference = 9F468F9C7A045249B12EC561 /* Pods-CigarGuard.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = YF7LGT5X9M;
 				INFOPLIST_FILE = CigarGuard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ewesterninc.CigarGuard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

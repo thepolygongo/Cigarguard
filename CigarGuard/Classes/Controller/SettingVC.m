@@ -12,9 +12,8 @@
 #import "History.h"
 #import "Checkpoint.h"
 #import "HistoryView.h"
-#import "PNChart.h"
-
 @import Charts;
+
 @interface SettingVC () <UIGestureRecognizerDelegate>
 {
     NSDateFormatter *dateFormat;
@@ -32,22 +31,15 @@
     __weak IBOutlet UIImageView *_dot2ImageView;
     __weak IBOutlet UIImageView *_dot3ImageView;
     __weak IBOutlet UIButton *_selButton;
-    __weak IBOutlet UIView *_chartView;
-    
-    __weak IBOutlet UIScrollView *_scrollView;
-    __weak IBOutlet UIView *_scrollContentView;
-    __weak IBOutlet NSLayoutConstraint *_scrollContentWidthConstraint;
-    __weak IBOutlet UIPageControl *_pageControl;
-    
-    PNLineChart *lineChart;
-    
+    __weak IBOutlet LineChartView *_chartView;
+            
     NSMutableString *dataString;
     
     NSTimer *timer;
-
-    NSMutableArray *pages;
     
     BOOL isInOperation;
+    int countRemove;
+    BOOL isFirst;
 }
 
 @property (strong, nonatomic) CBCharacteristic *readCharacteristic;
@@ -76,7 +68,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+    
+    countRemove = 0;
+    isFirst = true;
     if (!self.currPeripheral) {
         [self.navigationController popViewControllerAnimated:YES];
         return;
@@ -117,46 +111,64 @@
 }
 
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    if (_last != nil) {
+        [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
+            History *history = [localContext existingObjectWithID:_last.objectID error:nil];
+            
+            Checkpoint *record = [Checkpoint MR_createEntityInContext:localContext];
+            record.date = [NSDate date];
+            record.humidity = @(_HUM);
+            record.temperature = @(_TEMP);
+            record.average = @(_AVG);
+            record.current_setting = @(_SET);
+            record.max_val = @(_MAX);
+            record.min_val = @(_MIN);
+            record.state = @(_STATE);
+            record.history = history;
+        }];
+    }
+    NSLog(@"closed------");
+    
+}
+
 - (void)initialize
 {
-	
 	[_deviceLabel setHidden:NO];		
 	[_dateLabel setHidden:NO];
-	
-	// Resize PageControl dot
-	_pageControl.transform = CGAffineTransformMakeScale(0.7, 0.7);
-//    [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    
+	    
     dateFormat = [[NSDateFormatter alloc] init];
     dateFormat.dateFormat = @"yyyy-MM-dd hh:mm:ss aa";
     _dateLabel.text = [dateFormat stringFromDate:[NSDate date]];
     _deviceLabel.text = self.DeviceNumber;
     
-    pages = [NSMutableArray array];
-	
-	CGRect chartBounds = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, _chartView.bounds.size.height);
-	lineChart = [[PNLineChart alloc] initWithFrame:chartBounds];
-    [lineChart setShowCoordinateAxis:YES];
-    [lineChart setShowLabel:YES];
-//    [lineChart setXLabelFont:[UIFont systemFontOfSize:6]];
-//    [lineChart setXUnit:@"min"];
-    [lineChart setYUnit:@"%"];
-    [lineChart setYFixedValueMax:100];
-    [lineChart setYFixedValueMin:0];
-    [lineChart setYLabels:@[@"", @"10", @"", @"30", @"", @"50", @"", @"70", @"", @"90", @""]];
-    [lineChart setXLabels:@[@"",
-                            @"", @"", @"", @"", @"",
-                            @"", @"", @"", @"", @"",
-                            @"", @"", @"", @"", @"3",
-                            @"", @"", @"", @"", @"",
-                            @"", @"", @"", @"", @"",
-                            @"", @"", @"", @"", @"6",
-                            @"", @"", @"", @"", @"",
-                            @"", @"", @"", @"", @"",
-                            @"", @"", @"", @"", @"9",
-                            ]];
+    // chartView
+    _chartView.multipleTouchEnabled = false;
+    _chartView.dragEnabled = false;
     
-    [_chartView addSubview:lineChart];
+    _chartView.rightAxis.enabled = false;
+    _chartView.leftAxis.axisMinimum = 10;
+    _chartView.leftAxis.axisMaximum = 90;
+    [_chartView.leftAxis setLabelCount:5 force:true];
+    _chartView.leftAxis.labelTextColor = UIColor.darkGrayColor;
+    _chartView.legend.textColor = UIColor.darkGrayColor;
+
+    _chartView.xAxis.axisMinimum = 0;
+    _chartView.xAxis.axisMaximum = 9;
+    _chartView.xAxis.labelPosition = XAxisLabelPositionBottom;
+    _chartView.xAxis.labelCount = 3;
+    _chartView.xAxis.labelTextColor = UIColor.darkGrayColor;
+    
+    NSNumberFormatter *leftAxisFormatter = [[NSNumberFormatter alloc] init];
+    leftAxisFormatter.minimumFractionDigits = 0;
+    leftAxisFormatter.maximumFractionDigits = 1;
+    leftAxisFormatter.negativeSuffix = @"%";
+    leftAxisFormatter.positiveSuffix = @"%";
+    _chartView.leftAxis.valueFormatter = [[ChartDefaultAxisValueFormatter alloc] initWithFormatter:leftAxisFormatter];
+    _chartView.chartDescription.text = @"Minutes";
+    _chartView.chartDescription.textColor = UIColor.darkGrayColor;
 }
 
 - (void)timerTask
@@ -198,10 +210,11 @@
     }
 }
 
+
+#define RECORD_PER_SECONDS  6
+
 - (void)parseCharacteristicValue:(NSString *)value
 {
-    // ex: aaaaaaaa 00233f1b 4246423f 10000000 00000000 00000000 00000000 00000000 00000000 0000000000
-    
     _HUM = [self convertHexToInt:[value substringWithRange:NSMakeRange(4, 2)]];
     _TEMP = [self convertHexToInt:[value substringWithRange:NSMakeRange(6, 2)]];
     _AVG = [self convertHexToInt:[value substringWithRange:NSMakeRange(8, 2)]];
@@ -261,8 +274,8 @@
     }
     
     // Save Record
-    if (!_last || ![_last.device_name isEqualToString:self.DeviceNumber]) {
-        
+    if (isFirst || !_last || ![_last.device_name isEqualToString:self.DeviceNumber]) {
+        isFirst = false;
         [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
             History *newHistory = [History MR_createEntityInContext:localContext];
             newHistory.date = [NSDate date];
@@ -290,7 +303,7 @@
 			
             Checkpoint *lastCheckpoint = _last.checkpoints[_last.checkpoints.count - 1];
 			
-			if ([lastCheckpoint.date timeIntervalSinceNow] < -60 / 5) {
+			if ([lastCheckpoint.date timeIntervalSinceNow] < -RECORD_PER_SECONDS) {
 
 				NSLog(@"%@ - %f", lastCheckpoint.date, [lastCheckpoint.date timeIntervalSinceNow]);
 				needAdd = YES;
@@ -467,29 +480,6 @@
         }
     }];
     
-//    [baby setBlockOnDiscoverDescriptorsForCharacteristicAtChannel:channelOnPeropheralView block:^(CBPeripheral *peripheral, CBCharacteristic *characteristic, NSError *error) {
-//        NSLog(@"===characteristic name:%@", characteristic.service.UUID);
-//        for (CBDescriptor *d in characteristic.descriptors) {
-//            NSLog(@"CBDescriptor name is :%@", d.UUID);
-//        }
-//    }];
-    
-//    [baby setBlockOnReadValueForDescriptorsAtChannel:channelOnPeropheralView block:^(CBPeripheral *peripheral, CBDescriptor *descriptor, NSError *error) {
-//        NSLog(@"Descriptor name:%@ value is:%@", descriptor.characteristic.UUID, descriptor.value);
-//    }];
-    
-//    [baby setBlockOnDidReadRSSI:^(NSNumber *RSSI, NSError *error) {
-//        NSLog(@"setBlockOnDidReadRSSI:RSSI:%@", RSSI);
-//    }];
-    
-//    [rhythm setBlockOnBeatsBreak:^(BabyRhythm *bry) {
-//        NSLog(@"setBlockOnBeatsBreak call");
-//    }];
-    
-//    [rhythm setBlockOnBeatsOver:^(BabyRhythm *bry) {
-//        NSLog(@"setBlockOnBeatsOver call");
-//    }];
-    
     [baby setBlockOnDidWriteValueForCharacteristic:^(CBCharacteristic *characteristic, NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
@@ -512,124 +502,45 @@
 
 - (void)loadData
 {
-    // Clean
-    
-    _scrollView.contentOffset = CGPointMake(0, 0);
-    
-    for (UIView *view in pages) {
-        [view removeFromSuperview];
-    }
-    
-    // Add
-    
-    int pageCount = 1;
-    
     NSArray *list = [History MR_findAllSortedBy:@"date" ascending:NO];
     if (list && list.count > 0) {
-        
-//        int startIndex = 0;
-//        _last = list[0];
-//        
-//        if ([self.currPeripheral.identifier.UUIDString isEqualToString:_last.device_uuid]) {
-//            [self loadCheckpoints:_last];
-//            startIndex++;
-//        }
-//        
-//        for (int i=startIndex; i<list.count; i++) {
-//            History *history = list[i];
-//            if (pageCount < MAX_PAGE_COUNT) {
-//                [self addPage:history at:pageCount++];
-//            } else {
-//                [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
-//                    [history MR_deleteEntity];
-//                }];
-//            }
-//        }
-		
-		int startIndex = 0;
-		History *last = list[0];
-		
-		if ([self.currPeripheral.identifier.UUIDString isEqualToString:last.device_uuid]) {
-			
-			[self loadCheckpoints:last];
-			startIndex++;
-		}
-		
-		for (int i=startIndex; i<list.count; i++) {
-			History *history = list[i];
-			if (pageCount < MAX_PAGE_COUNT) {
-				[self addPage:history at:pageCount++];
-			} else {
-				[MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
-					[history MR_deleteEntity];
-				}];
-			}
+        		
+		History *history = list[0];
+		if ([self.currPeripheral.identifier.UUIDString isEqualToString:history.device_uuid]) {
+            
+            if (history && history.checkpoints && history.checkpoints.count > 0) {
+                NSMutableArray *values = [[NSMutableArray alloc] init];
+                        
+                while(history.checkpoints.count > 9 * 60.0 / RECORD_PER_SECONDS){
+                    [history removeCheckpointsAtIndexes:[NSIndexSet indexSetWithIndex:0]];
+                    countRemove++;
+                }
+                
+                for (int i=0; i<history.checkpoints.count; i++) {
+                    double val = history.checkpoints[i].humidity.floatValue;
+                    double x = (countRemove  + i) * RECORD_PER_SECONDS / 60.0;
+                    [values addObject:[[ChartDataEntry alloc] initWithX:x  y:val]];
+                }
+                        
+                LineChartDataSet *humidityDataSet = nil;
+                humidityDataSet = [[LineChartDataSet alloc] initWithEntries:values label:@"Humidity"];
+                humidityDataSet.drawValuesEnabled = false;
+                humidityDataSet.drawCirclesEnabled = false;
+                [humidityDataSet setColor:UIColor.blueColor];
+                
+                NSMutableArray *dataSets = [[NSMutableArray alloc] init];
+                [dataSets addObject:humidityDataSet];
+                
+                LineChartData *data = [[LineChartData alloc] initWithDataSets:dataSets];
+                
+                if(countRemove > 0){
+                    _chartView.xAxis.axisMinimum = countRemove * RECORD_PER_SECONDS / 60.0;
+                    _chartView.xAxis.axisMaximum = countRemove * RECORD_PER_SECONDS / 60.0 + 9;
+                }
+                _chartView.data = data;
+            }
 		}
     }
-	
-    _pageControl.numberOfPages = pageCount;
-    _scrollContentWidthConstraint.constant = _scrollView.bounds.size.width * pageCount;
-}
-
-- (void)loadCheckpoints:(History *)history
-{
-    if (history && history.checkpoints && history.checkpoints.count > 0) {
-		
-		NSMutableArray *dataList = [NSMutableArray array];
-		for (int i=0; i<history.checkpoints.count; i++) {
-			[dataList insertObject:history.checkpoints[history.checkpoints.count - i - 1] atIndex:0];
-			if (dataList.count >= lineChart.xLabels.count)
-				break;
-		}
-		if ([dataList count] > 1)
-		{
-			NSUInteger i = 0;
-			NSUInteger j = [dataList count] - 1;
-			while (i < j) {
-				[dataList exchangeObjectAtIndex:i
-							  withObjectAtIndex:j];
-				
-				i++;
-				j--;
-			}
-		}
-		
-		PNLineChartData *data01 = [PNLineChartData new];
-		data01.color = PNBlack;
-		data01.itemCount = lineChart.xLabels.count*5;
-		data01.inflexionPointStyle = PNLineChartPointStyleCircle;
-		data01.inflexionPointWidth = 2;
-		data01.getData = ^(NSUInteger index) {
-			if (dataList.count > index) {
-				Checkpoint *checkpoint = dataList[index];
-				return [PNLineChartDataItem dataItemWithY:checkpoint.humidity.floatValue];
-			} else {
-				return [PNLineChartDataItem dataItemWithY:0];
-			}
-		};
-		
-		lineChart.chartData = @[data01];
-		[lineChart strokeChart];
-    }
-}
-
-- (void)addPage:(History *)history at:(int)index
-{
-    HistoryView *view = [[[NSBundle mainBundle] loadNibNamed:@"HistoryView" owner:self options:nil] firstObject];
-    view.frame = CGRectMake([UIScreen mainScreen].bounds.size.width * index, 0,
-							[UIScreen mainScreen].bounds.size.width, _scrollView.bounds.size.height);
-    [view loadData:history];
-    [_scrollContentView addSubview:view];
-    
-    [pages addObject:view];
-}
-
-#pragma mark - UIScrollViewDelegate
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    NSInteger index = fabs(scrollView.contentOffset.x) / scrollView.frame.size.width;
-    [_pageControl setCurrentPage:index];
 }
 
 #pragma mark - Hex & NSData Conversion

@@ -7,16 +7,16 @@
 //
 
 #import "HistoryView.h"
-#import "PNChart.h"
 #import "Checkpoint.h"
 #import "SettingVC.h"
 #import "DVSwitch.h"
+@import Charts;
 
 @interface HistoryView()
 {
     __weak IBOutlet UILabel *_dateLabel;
     __weak IBOutlet UILabel *_deviceNameLabel;
-    __weak IBOutlet UIView *_chartView;
+    __weak IBOutlet LineChartView *_chartView;
     __weak IBOutlet UILabel *_humidityLabel;
     __weak IBOutlet UILabel *_temperatureLabel;
     __weak IBOutlet UILabel *_temperatureUnitLabel;
@@ -29,7 +29,6 @@
     __weak IBOutlet UIImageView *_dot3ImageView;
 	
 	NSInteger celTemperatureValue;
-    PNLineChart *lineChart;
 }
 @end
 
@@ -39,28 +38,31 @@
 {
     [super awakeFromNib];
     
-	CGRect chartBounds = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, _chartView.bounds.size.height);
-	lineChart = [[PNLineChart alloc] initWithFrame:chartBounds];
-    [lineChart setShowCoordinateAxis:YES];
-    [lineChart setXUnit:@"H"];
-    [lineChart setYUnit:@"%"];
-    [lineChart setXLabelFont:[UIFont systemFontOfSize:6]];
-    [lineChart setYValueMax:100];
-    [lineChart setYValueMin:0];
-    [lineChart setYLabels:@[@"", @"10", @"", @"30", @"", @"50", @"", @"70", @"", @"90", @""]];
-    [lineChart setXLabels:@[@"",
-                            @"", @"", @"", @"", @"",
-                            @"", @"", @"", @"", @"",
-                            @"", @"", @"", @"", @"3",
-                            @"", @"", @"", @"", @"",
-                            @"", @"", @"", @"", @"",
-                            @"", @"", @"", @"", @"6",
-                            @"", @"", @"", @"", @"",
-                            @"", @"", @"", @"", @"",
-                            @"", @"", @"", @"", @"9",
-                            ]];
+    // chartView
+    _chartView.multipleTouchEnabled = false;
+    _chartView.dragEnabled = false;
     
-    [_chartView addSubview:lineChart];
+    _chartView.rightAxis.enabled = false;
+    _chartView.leftAxis.axisMinimum = 10;
+    _chartView.leftAxis.axisMaximum = 90;
+    [_chartView.leftAxis setLabelCount:5 force:true];
+    _chartView.leftAxis.labelTextColor = UIColor.darkGrayColor;
+    _chartView.legend.textColor = UIColor.darkGrayColor;
+
+    _chartView.xAxis.axisMinimum = 0;
+    _chartView.xAxis.axisMaximum = 9;
+    _chartView.xAxis.labelPosition = XAxisLabelPositionBottom;
+    _chartView.xAxis.labelCount = 3;
+    _chartView.xAxis.labelTextColor = UIColor.darkGrayColor;
+    
+    NSNumberFormatter *leftAxisFormatter = [[NSNumberFormatter alloc] init];
+    leftAxisFormatter.minimumFractionDigits = 0;
+    leftAxisFormatter.maximumFractionDigits = 1;
+    leftAxisFormatter.negativeSuffix = @"%";
+    leftAxisFormatter.positiveSuffix = @"%";
+    _chartView.leftAxis.valueFormatter = [[ChartDefaultAxisValueFormatter alloc] initWithFormatter:leftAxisFormatter];
+    _chartView.chartDescription.text = @"Minutes";
+    _chartView.chartDescription.textColor = UIColor.darkGrayColor;
 }
 
 - (void)loadData:(History *)history
@@ -98,7 +100,7 @@
 		UIView *superViewTemperLabel = [[[[_temperatureLabel superview] superview] superview] superview];
 		
 		DVSwitch *switcher = [[DVSwitch alloc] initWithStringsArray:@[@"°C", @"°F"]];
-		switcher.frame = CGRectMake(superViewTemperLabel.bounds.size.width * 0.75 - 40.0, superViewTemperLabel.bounds.size.height, 80.0, 30);
+		switcher.frame = CGRectMake(superViewTemperLabel.bounds.size.width * 0.75 - 40.0, superViewTemperLabel.bounds.size.height - 30.0, 80.0, 30);
 		[superViewTemperLabel addSubview:switcher];
 		
 		[switcher setPressedHandler:^(NSUInteger index) {
@@ -130,36 +132,42 @@
     }
 }
 
+#define RECORD_PER_SECONDS  6
+
 - (void)loadCheckpoints:(History *)history
 {
+    
     if (history && history.checkpoints && history.checkpoints.count > 0) {
+        NSMutableArray *values = [[NSMutableArray alloc] init];
         
-        NSMutableArray *dataList = [NSMutableArray array];
-        for (int i=history.checkpoints.count - 1; i>=0; i--) {
-			
-			[dataList addObject:history.checkpoints[i]];
-			if (dataList.count >= lineChart.xLabels.count) {
-				break;
-			}
+        int countRemove = 0;
+        while(history.checkpoints.count > 9 * 60.0 / RECORD_PER_SECONDS){
+            [history removeCheckpointsAtIndexes:[NSIndexSet indexSetWithIndex:0]];
+            countRemove++;
         }
         
-        PNLineChartData *data01 = [PNLineChartData new];
-        data01.color = PNBlack;
-        data01.itemCount = lineChart.xLabels.count;
-        data01.inflexionPointStyle = PNLineChartPointStyleCircle;
-        data01.inflexionPointWidth = 2;
-        data01.getData = ^(NSUInteger index) {
-            if (dataList.count > index) {
-                Checkpoint *checkpoint = dataList[index];
-				NSLog(@"%f", checkpoint.humidity.floatValue);
-                return [PNLineChartDataItem dataItemWithY:checkpoint.humidity.floatValue];
-            } else {
-                return [PNLineChartDataItem dataItemWithY:0];
-            }
-        };
+        for (int i=0; i<history.checkpoints.count; i++) {
+            double val = history.checkpoints[i].humidity.floatValue;
+            double x = (countRemove  + i) * RECORD_PER_SECONDS / 60.0;
+            [values addObject:[[ChartDataEntry alloc] initWithX:x  y:val]];
+        }
+                
+        LineChartDataSet *humidityDataSet = nil;
+        humidityDataSet = [[LineChartDataSet alloc] initWithEntries:values label:@"Humidity"];
+        humidityDataSet.drawValuesEnabled = false;
+        humidityDataSet.drawCirclesEnabled = false;
+        [humidityDataSet setColor:UIColor.blueColor];
         
-        lineChart.chartData = @[data01];
-        [lineChart strokeChart];
+        NSMutableArray *dataSets = [[NSMutableArray alloc] init];
+        [dataSets addObject:humidityDataSet];
+        
+        LineChartData *data = [[LineChartData alloc] initWithDataSets:dataSets];
+        
+        if(countRemove > 0){
+            _chartView.xAxis.axisMinimum = countRemove * RECORD_PER_SECONDS / 60.0;
+            _chartView.xAxis.axisMaximum = countRemove * RECORD_PER_SECONDS / 60.0 + 9;
+        }
+        _chartView.data = data;
     }
 }
 
